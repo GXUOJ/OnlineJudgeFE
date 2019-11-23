@@ -78,6 +78,8 @@ export const m = {
   SPJ_language: 'SPJ language',
   Compile: 'Compile',
   TestCase: 'TestCase',
+  IOMode: 'IOMode',
+  ShareSubmission: 'ShareSubmission',
   Type: 'Type',
   Input: 'Input',
   Output: 'Output',

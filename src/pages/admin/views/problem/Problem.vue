@@ -67,6 +67,15 @@
             </el-form-item>
           </el-col>
           <el-col :span="4">
+            <el-form-item :label="$t('m.ShareSubmission')">
+              <el-switch
+                v-model="problem.share_submission"
+                active-text=""
+                inactive-text="">
+              </el-switch>
+            </el-form-item>
+          </el-col>
+          <el-col :span="4">
             <el-form-item :label="$t('m.PE_ignored')">
               <el-switch
                 v-model="problem.pe_ignored"
@@ -208,6 +217,26 @@
             </el-form-item>
           </el-col>
 
+          <el-col :span="6">
+            <el-form-item :label="$t('m.IOMode')">
+              <el-radio-group v-model="problem.io_mode.io_mode">
+                <el-radio label="Standard IO">Standard IO</el-radio>
+                <el-radio label="File IO">File IO</el-radio>
+              </el-radio-group>
+            </el-form-item>
+          </el-col>
+
+          <el-col :span="4" v-if="problem.io_mode.io_mode == 'File IO'">
+            <el-form-item :label="$t('m.InputFileName')" required>
+              <el-input type="text" v-model="problem.io_mode.input"></el-input>
+            </el-form-item>
+          </el-col>
+          <el-col :span="4" v-if="problem.io_mode.io_mode == 'File IO'">
+            <el-form-item :label="$t('m.OutputFileName')" required>
+              <el-input type="text" v-model="problem.io_mode.output"></el-input>
+            </el-form-item>
+          </el-col>
+
           <el-col :span="24">
             <el-table
               :data="problem.test_case_score"
@@ -270,10 +299,12 @@
         mode: '',
         contest: {},
         problem: {
-          languages: []
+          languages: [],
+          io_mode: {'io_mode': 'Standard IO', 'input': 'input.txt', 'output': 'output.txt'}
         },
         reProblem: {
-          languages: []
+          languages: [],
+          io_mode: {'io_mode': 'Standard IO', 'input': 'input.txt', 'output': 'output.txt'}
         },
         testCaseUploaded: false,
         allLanguage: {},
@@ -310,6 +341,7 @@
           memory_limit: 256,
           difficulty: 'Low',
           visible: true,
+          share_submission: false,
           pe_ignored: true,
           tags: [],
           languages: [],
@@ -323,7 +355,8 @@
           test_case_score: [],
           rule_type: 'ACM',
           hint: '',
-          source: ''
+          source: '',
+          io_mode: {'io_mode': 'Standard IO', 'input': 'input.txt', 'output': 'output.txt'}
         }
         let contestID = this.$route.params.contestId
         if (contestID) {

@@ -5,10 +5,12 @@
       <Table v-if="contestRuleType == 'ACM' || OIContestRealTimePermission"
              :columns="ACMTableColumns"
              :data="problems"
+             @on-row-click="goContestProblem"
              no-data-text="No Problems"></Table>
       <Table v-else
              :data="problems"
              :columns="OITableColumns"
+             @on-row-click="goContestProblem"
              no-data-text="No Problems"></Table>
     </Panel>
   </div>
@@ -57,7 +59,7 @@
             key: 'title'
           }
         ],
-        ContestProblemEnter_column: false,
+        ContestProblemEnter_column: true,
         ContestProblemRejudge_column: false
       }
     },

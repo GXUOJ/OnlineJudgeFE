@@ -78,6 +78,8 @@ export const m = {
   SPJ_language: 'SPJ language',
   Compile: '编译',
   TestCase: '测试用例',
+  IOMode: '输入/输出模式',
+  ShareSubmissions: '分享所有提交',
   Type: '测试类型',
   Input: '输入',
   Output: '输出',
